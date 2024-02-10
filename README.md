@@ -1,6 +1,6 @@
 # TapInvest Assignment
 
-A new Flutter project.
+Flutter assignment based on figma design for TapInvest startup
 
 ## Getting Started
 
