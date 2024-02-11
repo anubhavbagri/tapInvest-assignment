@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_invest/layers/presentation/constants/app_asset_paths.dart';
 import 'package:tap_invest/layers/presentation/constants/app_strings.dart';
 import 'package:tap_invest/layers/presentation/theme.dart';
 import 'package:tap_invest/layers/presentation/utils/size_config.dart';
@@ -34,13 +35,25 @@ class AppRoot extends StatelessWidget {
               // leadingWidth: SizeConfig.safeHorizontal! * 0.2,
               title: Text(
                 AppStrings.appbarText,
-                style: CustomTheme.h6(context),
+                style: CustomTheme.s1(context),
               ),
               centerTitle: false,
               automaticallyImplyLeading: false,
               titleSpacing: 0,
             ),
-            body: Center(child: Container()),
+
+            body: Padding(
+              padding: EdgeInsets.symmetric(horizontal: CustomTheme.paddingRight),
+              child: Column(
+                children: [
+                  Image.asset(
+                    AppAssetPath.logo2,
+                    fit: BoxFit.cover,
+                    width: SizeConfig.safeHorizontal! * 0.3,
+                  ),
+                ],
+              ),
+            ),
             bottomNavigationBar: Container(
               color: Colors.black54,
               height: 30,
