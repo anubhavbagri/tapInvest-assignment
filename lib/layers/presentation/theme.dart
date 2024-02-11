@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tap_invest/layers/presentation/utils/hex_color.dart';
 
 @immutable
 class CustomTheme extends ThemeExtension<CustomTheme> {
-  const CustomTheme({
-    this.primaryColor = const Color(0xFF16A34A),
-    this.tertiaryColor = const Color(0xFF15803D),
-    this.neutralColor = const Color(0xFFD6D3D1),
-  });
+  const CustomTheme();
 
-  final Color primaryColor;
-  final Color tertiaryColor;
-  final Color neutralColor;
+  static final primaryColor = HexColor("#16A34A");
+  static final tertiaryColor = HexColor("15803D");
+  static final neutralColor = HexColor("D6D3D1");
 
   ThemeData base() {
     final primaryTextTheme = GoogleFonts.interTextTheme();
@@ -32,7 +29,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
       textTheme: textTheme,
       // appBarTheme: AppBarTheme(
       // ),
-      // cardTheme: CardTheme(color: colorScheme.surfaceVariant),
+      cardTheme: CardTheme(color: tertiaryColor),
       // scaffoldBackgroundColor: isLight ? neutralColor : colorScheme.background,
       // tabBarTheme: TabBarTheme(
       //     labelColor: colorScheme.onSurface,
@@ -59,11 +56,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     Color? tertiaryColor,
     Color? neutralColor,
   }) =>
-      CustomTheme(
-        primaryColor: primaryColor ?? this.primaryColor,
-        tertiaryColor: tertiaryColor ?? this.tertiaryColor,
-        neutralColor: neutralColor ?? this.neutralColor,
-      );
+      const CustomTheme();
 
   @override
   CustomTheme lerp(
@@ -71,10 +64,6 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     double t,
   ) {
     if (other is! CustomTheme) return this;
-    return CustomTheme(
-      primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
-      tertiaryColor: Color.lerp(tertiaryColor, other.tertiaryColor, t)!,
-      neutralColor: Color.lerp(neutralColor, other.neutralColor, t)!,
-    );
+    return const CustomTheme();
   }
 }

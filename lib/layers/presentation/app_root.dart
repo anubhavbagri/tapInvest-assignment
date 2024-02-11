@@ -7,6 +7,7 @@ class AppRoot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const theme = CustomTheme();
+    // SizeConfig().init(context);
 
     return MaterialApp(
       theme: theme.base(),
@@ -18,7 +19,11 @@ class AppRoot extends StatelessWidget {
           // final cs = Theme.of(context).colorScheme;
           return Scaffold(
             extendBodyBehindAppBar: true,
-            appBar: AppBar(),
+            appBar: AppBar(
+                title: Text(
+              'data',
+              style: TextStyle(fontSize: 50, color: CustomTheme.primaryColor),
+            )),
             body: Container(),
           );
         },
