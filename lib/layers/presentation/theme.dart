@@ -12,6 +12,10 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
   static final tertiaryColor = HexColor("15803D");
   static final neutralColor = HexColor("D6D3D1");
   static final green700 = HexColor("#15803D");
+  static final textActive = HexColor("#152420");
+  static final stone300 = HexColor("#D6D3D1");
+  static final stone500 = HexColor("#78716C");
+  static final stone700 = HexColor("#44403C");
 
   static final double paddingVertical = SizeConfig.safeVertical! * .02;
   static final double paddingHorizontal = SizeConfig.safeHorizontal! * .04;
@@ -21,95 +25,95 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
 
   /// headline4 - headlineMedium
   static TextStyle h4(
-      BuildContext context, {
-        Color? color,
-        FontWeight? weight,
-        double? letterSpacing,
-      }) {
+    BuildContext context, {
+    Color? color,
+    FontWeight? weight,
+    double? letterSpacing,
+  }) {
     return Theme.of(context).textTheme.headlineMedium!.copyWith(
-      fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
-          .fontFamily,
-      letterSpacing: letterSpacing,
-      color: color ?? green700,
-    );
+          fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
+              .fontFamily,
+          letterSpacing: letterSpacing,
+          color: color ?? green700,
+        );
   }
 
   /// headline5 - headlineSmall
   static TextStyle h5(
-      BuildContext context, {
-        Color? color,
-        FontWeight? weight,
-      }) {
+    BuildContext context, {
+    Color? color,
+    FontWeight? weight,
+  }) {
     return Theme.of(context).textTheme.headlineSmall!.copyWith(
-      fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
-          .fontFamily,
-      color: color ?? green700,
-    );
+          fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
+              .fontFamily,
+          color: color ?? textActive,
+        );
   }
 
   /// headline6 - titleLarge
   static TextStyle h6(
-      BuildContext context, {
-        Color? color,
-        FontWeight? weight,
-      }) {
+    BuildContext context, {
+    Color? color,
+    FontWeight? weight,
+  }) {
     return Theme.of(context).textTheme.titleLarge!.copyWith(
-      fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w500)
-          .fontFamily,
-      color: color ?? green700,
-    );
+          fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
+              .fontFamily,
+          color: color ?? textActive,
+        );
   }
 
   /// subtitle1 - titleMedium
   static TextStyle s1(
-      BuildContext context, {
-        Color? color,
-        FontWeight? weight,
-      }) {
+    BuildContext context, {
+    Color? color,
+    FontWeight? weight,
+  }) {
     return Theme.of(context).textTheme.titleMedium!.copyWith(
-      fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
-          .fontFamily,
-      color: color ?? green700,
-      overflow: TextOverflow.ellipsis,
-    );
+          fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
+              .fontFamily,
+          color: color ?? green700,
+          overflow: TextOverflow.ellipsis,
+        );
   }
 
   // subtitle2 - titleSmall
   static TextStyle s2(
-      BuildContext context, {
-        Color? color,
-        FontWeight? weight,
-        TextDecoration? decoration,
-        bool isOverflow = true,
-      }) {
+    BuildContext context, {
+    Color? color,
+    FontWeight? weight,
+    TextDecoration? decoration,
+    bool isOverflow = true,
+  }) {
     return Theme.of(context).textTheme.titleSmall!.copyWith(
-      fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w500)
-          .fontFamily,
-      color: color ?? green700,
-      decoration: decoration,
-      overflow: isOverflow ? TextOverflow.ellipsis : TextOverflow.visible,
-    );
+          fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
+              .fontFamily,
+          color: color ?? stone500,
+          decoration: decoration,
+          overflow: isOverflow ? TextOverflow.ellipsis : TextOverflow.visible,
+        );
   }
 
   /// bodySmall - bodySmall
   static TextStyle bs(
-      BuildContext context, {
-        Color? color,
-        FontWeight? weight,
-        TextDecoration? decoration,
-        double? letterSpacing,
-        double? fontSize,
-        bool isOverflow = true,
-      }) {
+    BuildContext context, {
+    Color? color,
+    FontWeight? weight,
+    TextDecoration? decoration,
+    double? letterSpacing,
+    double? fontSize,
+    bool isOverflow = true,
+  }) {
     return Theme.of(context).textTheme.bodySmall!.copyWith(
-      fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w500)
-          .fontFamily,
-      color: color ?? green700,
-      decoration: decoration,
-      letterSpacing: letterSpacing,
-      fontSize: fontSize,
-      overflow: isOverflow ? TextOverflow.ellipsis : TextOverflow.visible,
-    );
+          fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
+              .fontFamily,
+          color: color ?? stone500,
+          decoration: decoration,
+          letterSpacing: letterSpacing,
+          fontSize: fontSize,
+          overflow: isOverflow ? TextOverflow.ellipsis : TextOverflow.visible,
+        );
   }
 
   ThemeData base() {
@@ -173,3 +177,51 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     return const CustomTheme();
   }
 }
+
+final SizedBox vSizedBox1 = SizedBox(
+  height: SizeConfig.safeVertical! * .01,
+);
+final SizedBox vSizedBox2 = SizedBox(
+  height: SizeConfig.safeVertical! * .015,
+);
+final SizedBox vSizedBox3 = SizedBox(
+  height: SizeConfig.safeVertical! * .02,
+);
+final SizedBox vSizedBox4 = SizedBox(
+  height: SizeConfig.safeVertical! * .03,
+);
+final SizedBox vSizedBox5 = SizedBox(
+  height: SizeConfig.safeVertical! * .04,
+);
+final SizedBox vSizedBox6 = SizedBox(
+  height: SizeConfig.safeVertical! * .05,
+);
+
+///
+final SizedBox vSizedBoxSmall = SizedBox(
+  width: SizeConfig.safeVertical! * .005,
+);
+
+final SizedBox hSizedBox1 = SizedBox(
+  width: SizeConfig.safeHorizontal! * .01,
+);
+
+final SizedBox hSizedBox2 = SizedBox(
+  width: SizeConfig.safeHorizontal! * .02,
+);
+
+final SizedBox hSizedBox3 = SizedBox(
+  width: SizeConfig.safeHorizontal! * .04,
+);
+
+final SizedBox hSizedBox4 = SizedBox(
+  width: SizeConfig.safeHorizontal! * 0.1,
+);
+
+final SizedBox hSizedBox5 = SizedBox(
+  width: SizeConfig.safeHorizontal! * 0.3,
+);
+
+final SizedBox hSizedBox6 = SizedBox(
+  width: SizeConfig.safeHorizontal! * .06,
+);
