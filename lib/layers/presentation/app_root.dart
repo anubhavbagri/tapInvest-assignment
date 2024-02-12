@@ -41,19 +41,23 @@ class AppRoot extends StatelessWidget {
               automaticallyImplyLeading: false,
               titleSpacing: 0,
             ),
-            body: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: CustomTheme.paddingRight),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: CustomTheme.paddingRight),
+                  child: Image.asset(
                     AppAssetPath.logo2,
                     fit: BoxFit.cover,
                     width: SizeConfig.safeHorizontal! * 0.3,
                   ),
-                  vSizedBox2,
-                  Row(
+                ),
+                vSizedBox2,
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: CustomTheme.paddingRight),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -70,8 +74,12 @@ class AppRoot extends StatelessWidget {
                               color: CustomTheme.stone500)),
                     ],
                   ),
-                  vSizedBox1,
-                  Text(
+                ),
+                vSizedBox1,
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: CustomTheme.paddingRight),
+                  child: Text(
                     AppStrings.agrizyDesc,
                     style: CustomTheme.s1(
                       context,
@@ -80,48 +88,85 @@ class AppRoot extends StatelessWidget {
                     ),
                     maxLines: 2,
                   ),
-                  vSizedBox3,
-                  Container(
-                    // height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(
-                        color: CustomTheme.stone300,
+                ),
+                vSizedBox3,
+                Container(
+                  margin: EdgeInsets.symmetric(
+                      horizontal: CustomTheme.paddingRight),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(
+                      color: CustomTheme.stone300,
+                      width: 1,
+                      strokeAlign: BorderSide.strokeAlignOutside,
+                    ),
+                    color: CustomTheme.stone300.withOpacity(0.2),
+                  ),
+                  child: Table(
+                    border: TableBorder.symmetric(
+                      inside: BorderSide(
                         width: 1,
-                        strokeAlign: BorderSide.strokeAlignOutside,
+                        color: CustomTheme.stone300,
                       ),
-                      color: CustomTheme.stone300.withOpacity(0.2),
                     ),
-                    child: Table(
-                      border: TableBorder.symmetric(
-                        inside: BorderSide(
-                          width: 1,
-                          color: CustomTheme.stone300,
-                        ),
-                      ),
-                      defaultVerticalAlignment:
-                          TableCellVerticalAlignment.middle,
-                      children: [
-                        TableRow(children: [
-                          tableCell(context,
-                              isInvestment: true,
-                              category: 'min invt',
-                              value: '1',
-                              unit: 'Lakh'),
-                          tableCell(context,
-                              category: 'tenure', value: '61', unit: 'days'),
-                        ]),
-                        TableRow(children: [
-                          tableCell(context,
-                              category: 'net yield', value: '13.23', unit: '%'),
-                          tableCell(context,
-                              category: 'raised', value: '70', unit: '%'),
-                        ]),
-                      ],
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    children: [
+                      TableRow(children: [
+                        tableCell(context,
+                            isInvestment: true,
+                            category: 'min invt',
+                            value: '1',
+                            unit: 'Lakh'),
+                        tableCell(context,
+                            category: 'tenure', value: '61', unit: 'days'),
+                      ]),
+                      TableRow(children: [
+                        tableCell(context,
+                            category: 'net yield', value: '13.23', unit: '%'),
+                        tableCell(context,
+                            category: 'raised', value: '70', unit: '%'),
+                      ]),
+                    ],
+                  ),
+                ),
+                vSizedBox4,
+                Divider(color: CustomTheme.stone300, thickness: 1),
+                vSizedBox3,
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: CustomTheme.paddingRight),
+                  child: Text(
+                    'Clients',
+                    style: CustomTheme.h6(
+                      context,
+                      color: CustomTheme.stone700,
+                      weight: FontWeight.w500,
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+                vSizedBox2,
+                Row(
+                  children: [
+                    Image.asset(
+                      AppAssetPath.google,
+                      fit: BoxFit.cover,
+                      width: SizeConfig.safeHorizontal! * 0.2,
+                    ),
+                    hSizedBox2,
+                    Image.asset(
+                      AppAssetPath.google,
+                      fit: BoxFit.cover,
+                      width: SizeConfig.safeHorizontal! * 0.2,
+                    ),
+                    hSizedBox2,
+                    Image.asset(
+                      AppAssetPath.google,
+                      fit: BoxFit.cover,
+                      width: SizeConfig.safeHorizontal! * 0.2,
+                    ),
+                  ],
+                ),
+              ],
             ),
             bottomNavigationBar: Container(
               color: Colors.black54,
