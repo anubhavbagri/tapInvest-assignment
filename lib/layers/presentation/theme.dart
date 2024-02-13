@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tap_invest/layers/presentation/utils/hex_color.dart';
 import 'package:tap_invest/layers/presentation/utils/size_config.dart';
@@ -13,6 +12,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
   static final neutralColor = HexColor("D6D3D1");
   static final green700 = HexColor("#15803D");
   static final textActive = HexColor("#152420");
+  static final stone200 = HexColor("#E7E5E4");
   static final stone300 = HexColor("#D6D3D1");
   static final stone500 = HexColor("#78716C");
   static final stone700 = HexColor("#44403C");
@@ -69,12 +69,13 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     BuildContext context, {
     Color? color,
     FontWeight? weight,
+    bool isOverflow = true,
   }) {
     return Theme.of(context).textTheme.titleMedium!.copyWith(
           fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
               .fontFamily,
           color: color ?? green700,
-          overflow: TextOverflow.ellipsis,
+          overflow: isOverflow ? TextOverflow.ellipsis : TextOverflow.visible,
         );
   }
 
@@ -134,12 +135,12 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textTheme: textTheme,
       appBarTheme: const AppBarTheme(
-        color: Colors.transparent,
+        color: Colors.white,
         elevation: 0,
-        systemOverlayStyle:
-            SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+        scrolledUnderElevation: 0,
+        // systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white),
       ),
-      // scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: Colors.white,
       // cardTheme: CardTheme(color: tertiaryColor),
       // tabBarTheme: TabBarTheme(
       //     labelColor: colorScheme.onSurface,
