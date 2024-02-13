@@ -117,7 +117,7 @@ class AppRoot extends StatelessWidget {
                           ),
                           child: heading(context, 'Highlights'),
                         ),
-                        vSizedBox3,
+                        vSizedBox4,
                         cardCarousel(context),
                       ],
                     ),
@@ -176,9 +176,75 @@ class AppRoot extends StatelessWidget {
                 ),
               ),
             ),
-            bottomNavigationBar: Container(
-              color: Colors.black54,
-              height: 30,
+            bottomNavigationBar: Material(
+              elevation: 10,
+              color: Colors.white,
+              surfaceTintColor: Colors.white,
+              child: SizedBox(
+                height: SizeConfig.safeVertical! * .1,
+                child: ListTile(
+                  contentPadding: EdgeInsets.fromLTRB(
+                      SizeConfig.safeHorizontal! * .06,
+                      SizeConfig.safeVertical! * .01,
+                      SizeConfig.safeHorizontal! * .06,
+                      0),
+                  title: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'FILLED',
+                            style: CustomTheme.s2(context,
+                                color: Colors.black.withOpacity(0.4)),
+                          ),
+                          Text(
+                            '30%',
+                            style: CustomTheme.s1(
+                              context,
+                              weight: FontWeight.w500,
+                              color: CustomTheme.gray700,
+                            ),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ButtonStyle(
+                          elevation: MaterialStateProperty.all(0),
+                          backgroundColor: MaterialStateProperty.all(
+                            CustomTheme.primaryColor,
+                          ),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              side: BorderSide(
+                                width: 1,
+                                color: CustomTheme.green700,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              AppStrings.tapToInvest,
+                              textAlign: TextAlign.center,
+                              style: CustomTheme.s2(
+                                context,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           );
         },

@@ -16,6 +16,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
   static final stone300 = HexColor("#D6D3D1");
   static final stone500 = HexColor("#78716C");
   static final stone700 = HexColor("#44403C");
+  static final gray700 = HexColor("#374151");
 
   static final double paddingVertical = SizeConfig.safeVertical! * .02;
   static final double paddingHorizontal = SizeConfig.safeHorizontal! * .04;
