@@ -10,6 +10,21 @@ class AppRoot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const theme = CustomTheme();
+
+    return MaterialApp(
+      theme: theme.base(),
+      debugShowCheckedModeBanner: false,
+      title: 'tapInvest',
+      home: const HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     SizeConfig().init(context);
 
     List chipList = [
@@ -19,235 +34,226 @@ class AppRoot extends StatelessWidget {
       buildChip(context, 'competition'),
     ];
 
-    return MaterialApp(
-      theme: theme.base(),
-      debugShowCheckedModeBanner: false,
-      title: 'tapInvest',
-      home: Builder(
-        builder: (context) {
-          return Scaffold(
-            appBar: AppBar(
-              leading: IconButton(
-                onPressed: null,
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  color: CustomTheme.green700,
-                ),
-                padding: EdgeInsets.only(
-                  left: CustomTheme.paddingHorizontal,
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: null,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: CustomTheme.green700,
+          ),
+          padding: EdgeInsets.only(
+            left: CustomTheme.paddingHorizontal,
+          ),
+        ),
+        toolbarHeight: SizeConfig.safeVertical! * 0.1,
+        title: Text(
+          AppStrings.appbarText,
+          style: CustomTheme.s1(context),
+        ),
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        titleSpacing: 0,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: CustomTheme.paddingRight),
+                child: Image.asset(
+                  AppAssetPath.logo2,
+                  fit: BoxFit.cover,
+                  width: SizeConfig.safeHorizontal! * 0.3,
                 ),
               ),
-              toolbarHeight: SizeConfig.safeVertical! * 0.1,
-              title: Text(
-                AppStrings.appbarText,
-                style: CustomTheme.s1(context),
-              ),
-              centerTitle: false,
-              automaticallyImplyLeading: false,
-              titleSpacing: 0,
-            ),
-            body: SafeArea(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              vSizedBox2,
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: CustomTheme.paddingRight),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: CustomTheme.paddingRight),
-                      child: Image.asset(
-                        AppAssetPath.logo2,
-                        fit: BoxFit.cover,
-                        width: SizeConfig.safeHorizontal! * 0.3,
-                      ),
+                    Text('Agrizy', style: CustomTheme.h6(context)),
+                    hSizedBox1,
+                    Icon(
+                      Icons.arrow_back_rounded,
+                      color: CustomTheme.textActive.withOpacity(0.4),
+                      size: 25,
                     ),
-                    vSizedBox2,
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: CustomTheme.paddingRight),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text('Agrizy', style: CustomTheme.h6(context)),
-                          hSizedBox1,
-                          Icon(
-                            Icons.arrow_back_rounded,
-                            color: CustomTheme.textActive.withOpacity(0.4),
-                            size: 25,
-                          ),
-                          hSizedBox1,
-                          Text('Keshav Industries',
-                              style: CustomTheme.h6(context,
-                                  color: CustomTheme.stone500)),
-                        ],
-                      ),
-                    ),
-                    vSizedBox1,
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: CustomTheme.paddingRight),
-                      child: Text(
-                        AppStrings.agrizyDesc,
-                        style: CustomTheme.s1(
-                          context,
-                          color: CustomTheme.stone500,
-                          weight: FontWeight.w500,
-                        ),
-                        maxLines: 2,
-                      ),
-                    ),
-                    vSizedBox3,
-                    statTable(context),
-                    vSizedBox4,
-                    Divider(color: CustomTheme.stone300, thickness: 1),
-                    vSizedBox4,
-                    midSection(context, title: 'Clients'),
-                    vSizedBox4,
-                    midSection(context, title: 'Backed by'),
-                    vSizedBox4,
-                    Divider(color: CustomTheme.stone300, thickness: 1),
-                    vSizedBox4,
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: CustomTheme.paddingRight,
-                          ),
-                          child: heading(context, 'Highlights'),
-                        ),
-                        vSizedBox4,
-                        cardCarousel(context),
-                      ],
-                    ),
-                    vSizedBox4,
-                    Divider(color: CustomTheme.stone300, thickness: 1),
-                    vSizedBox4,
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: CustomTheme.paddingRight,
-                          ),
-                          child: heading(context, 'Key Metrics'),
-                        ),
-                        SizedBox(
-                          height: SizeConfig.safeVertical! * 0.08,
-                          child: ListView.separated(
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            primary: false,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: CustomTheme.paddingRight),
-                            separatorBuilder: (_, index) =>
-                                SizedBox(width: CustomTheme.textPadding),
-                            itemCount: chipList.length,
-                            itemBuilder: (_, index) => chipList[index],
-                          ),
-                        ),
-                        vSizedBox1,
-                        statTable(context),
-                        vSizedBox4,
-                        Divider(color: CustomTheme.stone300, thickness: 1),
-                        vSizedBox4,
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: CustomTheme.paddingRight,
-                          ),
-                          child: heading(context, 'Documents'),
-                        ),
-                        vSizedBox4,
-                        swipeCard(
-                          context,
-                          child: docContent(context),
-                        ),
-                        vSizedBox3,
-                        swipeCard(
-                          context,
-                          child: docContent(context),
-                        ),
-                        vSizedBox6,
-                      ],
-                    ),
+                    hSizedBox1,
+                    Text('Keshav Industries',
+                        style: CustomTheme.h6(context,
+                            color: CustomTheme.stone500)),
                   ],
                 ),
               ),
-            ),
-            bottomNavigationBar: Material(
-              elevation: 10,
-              color: Colors.white,
-              surfaceTintColor: Colors.white,
-              child: SizedBox(
-                height: SizeConfig.safeVertical! * .1,
-                child: ListTile(
-                  contentPadding: EdgeInsets.fromLTRB(
-                      SizeConfig.safeHorizontal! * .06,
-                      SizeConfig.safeVertical! * .01,
-                      SizeConfig.safeHorizontal! * .06,
-                      0),
-                  title: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'FILLED',
-                            style: CustomTheme.s2(context,
-                                color: Colors.black.withOpacity(0.4)),
-                          ),
-                          Text(
-                            '30%',
-                            style: CustomTheme.s1(
-                              context,
-                              weight: FontWeight.w500,
-                              color: CustomTheme.gray700,
-                            ),
-                          ),
-                        ],
+              vSizedBox1,
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: CustomTheme.paddingRight),
+                child: Text(
+                  AppStrings.agrizyDesc,
+                  style: CustomTheme.s1(
+                    context,
+                    color: CustomTheme.stone500,
+                    weight: FontWeight.w500,
+                  ),
+                  maxLines: 2,
+                ),
+              ),
+              vSizedBox3,
+              statTable(context),
+              vSizedBox4,
+              Divider(color: CustomTheme.stone300, thickness: 1),
+              vSizedBox4,
+              midSection(context, title: 'Clients'),
+              vSizedBox4,
+              midSection(context, title: 'Backed by'),
+              vSizedBox4,
+              Divider(color: CustomTheme.stone300, thickness: 1),
+              vSizedBox4,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: CustomTheme.paddingRight,
+                    ),
+                    child: heading(context, 'Highlights'),
+                  ),
+                  vSizedBox4,
+                  cardCarousel(context),
+                ],
+              ),
+              vSizedBox4,
+              Divider(color: CustomTheme.stone300, thickness: 1),
+              vSizedBox4,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: CustomTheme.paddingRight,
+                    ),
+                    child: heading(context, 'Key Metrics'),
+                  ),
+                  SizedBox(
+                    height: SizeConfig.safeVertical! * 0.08,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      primary: false,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: CustomTheme.paddingRight),
+                      separatorBuilder: (_, index) =>
+                          SizedBox(width: CustomTheme.textPadding),
+                      itemCount: chipList.length,
+                      itemBuilder: (_, index) => chipList[index],
+                    ),
+                  ),
+                  vSizedBox1,
+                  statTable(context),
+                  vSizedBox4,
+                  Divider(color: CustomTheme.stone300, thickness: 1),
+                  vSizedBox4,
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: CustomTheme.paddingRight,
+                    ),
+                    child: heading(context, 'Documents'),
+                  ),
+                  vSizedBox4,
+                  swipeCard(
+                    context,
+                    child: docContent(context),
+                  ),
+                  vSizedBox3,
+                  swipeCard(
+                    context,
+                    child: docContent(context),
+                  ),
+                  vSizedBox6,
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Material(
+        elevation: 10,
+        color: Colors.white,
+        surfaceTintColor: Colors.white,
+        child: SizedBox(
+          height: SizeConfig.safeVertical! * .1,
+          child: ListTile(
+            contentPadding: EdgeInsets.fromLTRB(
+                SizeConfig.safeHorizontal! * .06,
+                SizeConfig.safeVertical! * .01,
+                SizeConfig.safeHorizontal! * .06,
+                0),
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'FILLED',
+                      style: CustomTheme.s2(context,
+                          color: Colors.black.withOpacity(0.4)),
+                    ),
+                    Text(
+                      '30%',
+                      style: CustomTheme.s1(
+                        context,
+                        weight: FontWeight.w500,
+                        color: CustomTheme.gray700,
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          elevation: MaterialStateProperty.all(0),
-                          backgroundColor: MaterialStateProperty.all(
-                            CustomTheme.primaryColor,
-                          ),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              side: BorderSide(
-                                width: 1,
-                                color: CustomTheme.green700,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
+                    backgroundColor: MaterialStateProperty.all(
+                      CustomTheme.primaryColor,
+                    ),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: 1,
+                          color: CustomTheme.green700,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              AppStrings.tapToInvest,
-                              textAlign: TextAlign.center,
-                              style: CustomTheme.s2(
-                                context,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        AppStrings.tapToInvest,
+                        textAlign: TextAlign.center,
+                        style: CustomTheme.s2(
+                          context,
+                          color: Colors.white,
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
+              ],
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
