@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tap_invest/layers/presentation/constants/app_asset_paths.dart';
 import 'package:tap_invest/layers/presentation/constants/app_strings.dart';
+import 'package:tap_invest/layers/presentation/purchase_page/view/purchase_page.dart';
 import 'package:tap_invest/layers/presentation/theme.dart';
 import 'package:tap_invest/layers/presentation/utils/size_config.dart';
 
@@ -36,6 +37,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: SizeConfig.safeVertical! * 0.1,
         leading: IconButton(
           onPressed: null,
           icon: Icon(
@@ -46,7 +48,6 @@ class HomePage extends StatelessWidget {
             left: CustomTheme.paddingHorizontal,
           ),
         ),
-        toolbarHeight: SizeConfig.safeVertical! * 0.1,
         title: Text(
           AppStrings.appbarText,
           style: CustomTheme.s1(context),
@@ -220,7 +221,10 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ///can pass any value from here to the next page through its route
+                    Navigator.of(context).push(PurchasePage.route());
+                  },
                   style: ButtonStyle(
                     elevation: MaterialStateProperty.all(0),
                     backgroundColor: MaterialStateProperty.all(

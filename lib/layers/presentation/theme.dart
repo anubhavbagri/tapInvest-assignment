@@ -8,15 +8,16 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
   const CustomTheme();
 
   static final primaryColor = HexColor("#16A34A");
-  static final tertiaryColor = HexColor("15803D");
   static final neutralColor = HexColor("D6D3D1");
   static final green700 = HexColor("#15803D");
   static final textActive = HexColor("#152420");
   static final stone200 = HexColor("#E7E5E4");
   static final stone300 = HexColor("#D6D3D1");
+  static final stone400 = HexColor("#A8A29E");
   static final stone500 = HexColor("#78716C");
   static final stone700 = HexColor("#44403C");
   static final gray700 = HexColor("#374151");
+  static final slate600 = HexColor("#475569");
 
   static final double paddingVertical = SizeConfig.safeVertical! * .02;
   static final double paddingHorizontal = SizeConfig.safeHorizontal! * .04;
@@ -71,12 +72,14 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     Color? color,
     FontWeight? weight,
     bool isOverflow = true,
+    double? letterSpacing,
   }) {
     return Theme.of(context).textTheme.titleMedium!.copyWith(
           fontFamily: GoogleFonts.inter(fontWeight: weight ?? FontWeight.w600)
               .fontFamily,
           color: color ?? green700,
           overflow: isOverflow ? TextOverflow.ellipsis : TextOverflow.visible,
+          letterSpacing: letterSpacing,
         );
   }
 
@@ -131,41 +134,28 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     );
 
     return ThemeData(
-      useMaterial3: true,
-      extensions: [this],
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      textTheme: textTheme,
-      appBarTheme: const AppBarTheme(
-        color: Colors.white,
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        // systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white),
-      ),
-      scaffoldBackgroundColor: Colors.white,
-      // cardTheme: CardTheme(color: tertiaryColor),
-      // tabBarTheme: TabBarTheme(
-      //     labelColor: colorScheme.onSurface,
-      //     unselectedLabelColor: colorScheme.onSurface,
-      //     indicator: BoxDecoration(
-      //         border: Border(
-      //             bottom: BorderSide(color: colorScheme.primary, width: 2)))),
-      // floatingActionButtonTheme: FloatingActionButtonThemeData(
-      //     backgroundColor: colorScheme.secondaryContainer,
-      //     foregroundColor: colorScheme.onSecondaryContainer),
-      // navigationRailTheme: NavigationRailThemeData(
-      //     backgroundColor: isLight ? neutralColor : colorScheme.surface,
-      //     selectedIconTheme:
-      //         IconThemeData(color: colorScheme.onSecondaryContainer),
-      //     indicatorColor: colorScheme.secondaryContainer),
-      // chipTheme: ChipThemeData(
-      //     backgroundColor: isLight ? neutralColor : colorScheme.surface),
-    );
+        useMaterial3: true,
+        extensions: [this],
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: textTheme,
+        appBarTheme: const AppBarTheme(
+          color: Colors.white,
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          // systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white),
+        ),
+        scaffoldBackgroundColor: Colors.white,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Colors.black,
+        ),
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        }));
   }
 
   @override
   ThemeExtension<CustomTheme> copyWith({
     Color? primaryColor,
-    Color? tertiaryColor,
     Color? neutralColor,
   }) =>
       const CustomTheme();
@@ -179,6 +169,10 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     return const CustomTheme();
   }
 }
+
+final SizedBox vSizedBoxHalf = SizedBox(
+  height: SizeConfig.safeVertical! * .005,
+);
 
 final SizedBox vSizedBox1 = SizedBox(
   height: SizeConfig.safeVertical! * .01,
