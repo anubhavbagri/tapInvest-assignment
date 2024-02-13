@@ -32,6 +32,7 @@ class PurchaseView extends StatefulWidget {
 
 class _PurchaseViewState extends State<PurchaseView> {
   final TextEditingController _textController = TextEditingController();
+  ValueNotifier<String> returnAmount = ValueNotifier<String>('56,555');
   final FocusNode _focusNode = FocusNode();
   bool showError = false;
 
@@ -43,6 +44,12 @@ class _PurchaseViewState extends State<PurchaseView> {
         showError = false;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    returnAmount.dispose();
+    super.dispose();
   }
 
   void handleSubmit() {
@@ -144,8 +151,10 @@ class _PurchaseViewState extends State<PurchaseView> {
                   ),
                   vSizedBox1,
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.safeHorizontal! * .3),
+                    padding: EdgeInsets.only(
+                      left: SizeConfig.safeHorizontal! * .3,
+                      right: SizeConfig.safeHorizontal! * .2,
+                    ),
                     child: Row(
                       children: [
                         Text(
@@ -163,6 +172,11 @@ class _PurchaseViewState extends State<PurchaseView> {
                             autofocus: true,
                             controller: _textController,
                             onChanged: (value) {
+                              if (value == '1,00,000') {
+                                returnAmount.value = '1,13,110';
+                              } else {
+                                returnAmount.value = '-';
+                              }
                               setState(() {
                                 showError = false;
                               });
@@ -225,11 +239,18 @@ class _PurchaseViewState extends State<PurchaseView> {
                 ],
               ),
               vSizedBox6,
-              infoRow(context,
-                  category: 'Total Returns',
-                  value: '56,555',
-                  unit: '₹ ',
-                  isRupee: true),
+              ValueListenableBuilder(
+                valueListenable: returnAmount,
+                builder: (context, value, child) {
+                  return infoRow(
+                    context,
+                    category: 'Total Returns',
+                    value: value,
+                    unit: '₹ ',
+                    isRupee: true,
+                  );
+                },
+              ),
               Divider(color: CustomTheme.stone300, thickness: 1),
               infoRow(context,
                   category: 'Net Yield', value: '13.11 ', unit: '%'),
