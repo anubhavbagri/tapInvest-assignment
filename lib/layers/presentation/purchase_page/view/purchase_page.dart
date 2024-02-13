@@ -365,14 +365,26 @@ class _PurchaseViewState extends State<PurchaseView> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              category,
-              style: CustomTheme.s1(
-                context,
-                color: CustomTheme.slate600,
-                weight: FontWeight.w400,
+            RichText(text: TextSpan(children: [
+              TextSpan(
+                text: category,
+                style: CustomTheme.s1(
+                  context,
+                  color: CustomTheme.slate600,
+                  weight: FontWeight.w400,
+                ),
               ),
-            ),
+              if(category.contains('Yield'))
+                TextSpan(
+                  text: '  IRR ⓘ',
+                  style: CustomTheme.s2(
+                    context,
+                    color: CustomTheme.green700,
+                    weight: FontWeight.w500,
+                  ),
+                ),
+            ])),
+
             RichText(
               text: TextSpan(
                 children: [
