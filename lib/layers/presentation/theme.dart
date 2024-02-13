@@ -8,7 +8,6 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
   const CustomTheme();
 
   static final primaryColor = HexColor("#16A34A");
-  static final neutralColor = HexColor("D6D3D1");
   static final green700 = HexColor("#15803D");
   static final textActive = HexColor("#152420");
   static final stone200 = HexColor("#E7E5E4");
@@ -19,6 +18,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
   static final stone900 = HexColor("#1C1917");
   static final gray700 = HexColor("#374151");
   static final slate600 = HexColor("#475569");
+  static final amber700 = HexColor("#B45309");
 
   static final double paddingVertical = SizeConfig.safeVertical! * .02;
   static final double paddingHorizontal = SizeConfig.safeHorizontal! * .04;
@@ -157,7 +157,6 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
   @override
   ThemeExtension<CustomTheme> copyWith({
     Color? primaryColor,
-    Color? neutralColor,
   }) =>
       const CustomTheme();
 

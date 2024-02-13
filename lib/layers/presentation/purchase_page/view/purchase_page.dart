@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_action/slide_action.dart';
+import 'package:tap_invest/layers/presentation/constants/app_strings.dart';
 import 'package:tap_invest/layers/presentation/theme.dart';
 import 'package:tap_invest/layers/presentation/utils/size_config.dart';
 
@@ -22,10 +23,39 @@ class PurchasePage extends StatelessWidget {
   Widget build(BuildContext context) => PurchaseView();
 }
 
-class PurchaseView extends StatelessWidget {
+class PurchaseView extends StatefulWidget {
   PurchaseView({Key? key}) : super(key: key);
 
+  @override
+  State<PurchaseView> createState() => _PurchaseViewState();
+}
+
+class _PurchaseViewState extends State<PurchaseView> {
   final TextEditingController _textController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+  bool showError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      setState(() {
+        showError = false;
+      });
+    });
+  }
+
+  void handleSubmit() {
+    setState(() {
+      if (_textController.text.isEmpty) {
+        showError = true;
+      } else {
+        showError = false;
+        // Process the form data or perform any other actions
+        print("Submitted: ${_textController.text}");
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,8 +159,14 @@ class PurchaseView extends StatelessWidget {
                         Expanded(
                           child: TextField(
                             textInputAction: TextInputAction.next,
+                            focusNode: _focusNode,
                             autofocus: true,
                             controller: _textController,
+                            onChanged: (value) {
+                              setState(() {
+                                showError = false;
+                              });
+                            },
                             decoration: InputDecoration.collapsed(
                               hintText: ' Min 50,000',
                               hintStyle: CustomTheme.h6(
@@ -172,12 +208,23 @@ class PurchaseView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  if (showError)
+                    Padding(
+                      padding:
+                          EdgeInsets.only(top: CustomTheme.paddingVertical),
+                      child: Text(
+                        AppStrings.errorText,
+                        style: CustomTheme.s2(
+                          context,
+                          weight: FontWeight.w400,
+                          color: CustomTheme.amber700,
+                        ),
+                      ),
+                    ),
                 ],
               ),
-              SizedBox(
-                height: SizeConfig.safeVertical! * .06,
-              ),
+              vSizedBox6,
               infoRow(context,
                   category: 'Total Returns',
                   value: '56,555',
@@ -271,11 +318,7 @@ class PurchaseView extends StatelessWidget {
                       ),
                     );
                   },
-                  action: () {
-                    if(_textController.text.isEmpty) {
-
-                    }
-                  },
+                  action: handleSubmit,
                 )
               ],
             ),
