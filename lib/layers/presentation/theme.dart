@@ -16,6 +16,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
   static final stone400 = HexColor("#A8A29E");
   static final stone500 = HexColor("#78716C");
   static final stone700 = HexColor("#44403C");
+  static final stone900 = HexColor("#1C1917");
   static final gray700 = HexColor("#374151");
   static final slate600 = HexColor("#475569");
 
