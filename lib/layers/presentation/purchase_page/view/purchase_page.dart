@@ -172,7 +172,9 @@ class _PurchaseViewState extends State<PurchaseView> {
                             autofocus: true,
                             controller: _textController,
                             onChanged: (value) {
-                              if (value == '1,00,000') {
+                              if (value == '') {
+                                returnAmount.value = '56,555';
+                              } else if (value == '1,00,000') {
                                 returnAmount.value = '1,13,110';
                               } else {
                                 returnAmount.value = '-';
