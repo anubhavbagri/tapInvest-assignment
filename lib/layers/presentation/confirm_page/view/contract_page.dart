@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_invest/layers/presentation/confirm_page/view/final_page.dart';
 import 'package:tap_invest/layers/presentation/constants/app_asset_paths.dart';
 import 'package:tap_invest/layers/presentation/constants/app_strings.dart';
 import 'package:tap_invest/layers/presentation/theme.dart';
@@ -38,7 +39,7 @@ class ContractView extends StatelessWidget {
             ),
             vSizedBox4,
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(FinalPage.route()),
               style: ButtonStyle(
                 elevation: MaterialStateProperty.all(0),
                 backgroundColor: MaterialStateProperty.all(
