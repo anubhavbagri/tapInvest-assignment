@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_action/slide_action.dart';
+import 'package:tap_invest/layers/presentation/confirm_page/view/confirm_page.dart';
 import 'package:tap_invest/layers/presentation/constants/app_strings.dart';
 import 'package:tap_invest/layers/presentation/theme.dart';
 import 'package:tap_invest/layers/presentation/utils/size_config.dart';
@@ -20,11 +21,11 @@ class PurchasePage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => PurchaseView();
+  Widget build(BuildContext context) => const PurchaseView();
 }
 
 class PurchaseView extends StatefulWidget {
-  PurchaseView({Key? key}) : super(key: key);
+  const PurchaseView({Key? key}) : super(key: key);
 
   @override
   State<PurchaseView> createState() => _PurchaseViewState();
@@ -58,10 +59,12 @@ class _PurchaseViewState extends State<PurchaseView> {
         showError = true;
       } else {
         showError = false;
-        // Process the form data or perform any other actions
         print("Submitted: ${_textController.text}");
       }
     });
+    if (int.parse(_textController.text.replaceAll(',', '')) >= 50000) {
+      Navigator.of(context).push(ConfirmPage.route());
+    }
   }
 
   @override
@@ -365,7 +368,8 @@ class _PurchaseViewState extends State<PurchaseView> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            RichText(text: TextSpan(children: [
+            RichText(
+                text: TextSpan(children: [
               TextSpan(
                 text: category,
                 style: CustomTheme.s1(
@@ -374,7 +378,7 @@ class _PurchaseViewState extends State<PurchaseView> {
                   weight: FontWeight.w400,
                 ),
               ),
-              if(category.contains('Yield'))
+              if (category.contains('Yield'))
                 TextSpan(
                   text: '  IRR ⓘ',
                   style: CustomTheme.s2(
@@ -384,7 +388,6 @@ class _PurchaseViewState extends State<PurchaseView> {
                   ),
                 ),
             ])),
-
             RichText(
               text: TextSpan(
                 children: [
@@ -421,22 +424,3 @@ class _PurchaseViewState extends State<PurchaseView> {
         ),
       );
 }
-
-/// static Route<void> route() {
-/// return PageRouteBuilder(
-//       pageBuilder: (context, animation, secondaryAnimation) {
-//         /// can initialize page level cubit here with parameter value
-//         return const PurchasePage();
-//       },
-//       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//         const begin = Offset(0.0, 1.0);
-//         const end = Offset.zero;
-//         final tween = Tween(begin: begin, end: end);
-//         final offsetAnimation = animation.drive(tween);
-//         return SlideTransition(
-//           position: offsetAnimation,
-//           child: child,
-//         );
-//       },
-//     );
-// }
