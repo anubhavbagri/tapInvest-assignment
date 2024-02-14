@@ -7,6 +7,7 @@ class AppStrings {
   static const highlightDesc =
       'Agrizy was founded in 2021 by Vicky Dodani and Saket Chirania to provide an end-to-end solution to the agri processing market.';
   static const tapToInvest = 'Tap to Invest';
+  static const sign = 'Sign Contract';
   static const errorText = 'Please enter an amount.';
   static const confirmDesc =
       'You are almost there!\nDo not leave this page, or press the back button.';

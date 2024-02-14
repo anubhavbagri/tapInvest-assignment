@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tap_invest/layers/presentation/confirm_page/view/contract_page.dart';
 import 'package:tap_invest/layers/presentation/constants/app_asset_paths.dart';
 import 'package:tap_invest/layers/presentation/constants/app_strings.dart';
 import 'package:tap_invest/layers/presentation/theme.dart';
@@ -62,6 +63,8 @@ class _GenerateViewState extends State<GenerateView>
       _animationController?.forward(from: 0.0);
     } else if (status == AnimationStatus.dismissed) {
       _animationController?.removeStatusListener(_animationStatusListener);
+      Future.delayed(const Duration(seconds: 1),
+              () => Navigator.of(context).push(ContractPage.route()));
     }
   }
 
